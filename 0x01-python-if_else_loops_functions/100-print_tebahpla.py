@@ -1,5 +1,3 @@
 #!/usr/bin/python3
-index = 0
-for ch in range(ord('z'), ord('a') - 1, -1):
-    print("{}".format(chr(ch - index)), end="")
-    index = 32 if index == 0 else 0
+for b in range(ord('z'), ord('a') - 1, -2):
+    print("{:c}{:s}".format(b, chr(b - 33)), end="")

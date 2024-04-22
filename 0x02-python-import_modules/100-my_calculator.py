@@ -1,26 +1,22 @@
 #!/usr/bin/python3
+
 if __name__ == "__main__":
-    from calculator_1 import add, sub, mul, div
+    """Build my own calculator!"""
     import sys
+    from calculator_1 import mul, sub, add, div
 
-    argv = sys.argv[1:]
-    argv_count = len(argv)
-    operators = ["+", "-", "*", "/"]
-
-    if argv_count != 3:
+    if len(sys.argv) != 4:
         print("Usage: ./100-my_calculator.py <a> <operator> <b>")
-        exit(1)
-    elif sys.argv[2] not in operators:
+        sys.exit(1)
+
+    a = int(sys.argv[1])
+    b = int(sys.argv[3])
+    op = sys.argv[2]
+
+    dic = {"+": add, "-": sub, "*": mul, "/": div}
+
+    if op not in dic:
         print("Unknown operator. Available operators: +, -, * and /")
-        exit(1)
-    else:
-        a = int(sys.argv[1])
-        b = int(sys.argv[3])
-        if sys.argv[2] == "+":
-            print("{:d} + {:d} = {:d}".format(a, b, add(a, b)))
-        elif sys.argv[2] == "-":
-            print("{:d} - {:d} = {:d}".format(a, b, sub(a, b)))
-        elif sys.argv[2] == "*":
-            print("{:d} * {:d} = {:d}".format(a, b, mul(a, b)))
-        elif sys.argv[2] == "/":
-            print("{:d} / {:d} = {:d}".format(a, b, div(a, b)))
+        sys.exit(1)
+
+    print("{} {} {} = {}".format(a, op, b, dic[op](a, b)))

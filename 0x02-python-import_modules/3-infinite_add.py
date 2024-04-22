@@ -1,8 +1,10 @@
 #!/usr/bin/python3
+
 if __name__ == "__main__":
+    """Infinite add all the arguments"""
     import sys
 
-    total = 0
-    for index in range(len(sys.argv) - 1):
-        total += int(sys.argv[index + 1])
-    print("{}".format(total))
+    sum = 0
+    for i in range(1, len(sys.argv)):
+        sum += int(sys.argv[i])
+    print("{}".format(sum))

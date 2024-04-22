@@ -1,14 +1,17 @@
 #!/usr/bin/python3
-
-"""define class rectangle"""
+""" define class rectangle"""
 
 
 class Rectangle():
-    """inside class rectangle"""
+    """ inside class rectangle"""
+
+    number_of_instances = 0
+    print_symbol = "#"
 
     def __init__(self, width=0, height=0):
         self.width = width
         self.height = height
+        Rectangle.number_of_instances += 1
 
     @property
     def width(self):
@@ -61,8 +64,18 @@ class Rectangle():
         """
         if (not self.__height or not self.__width):
             return ""
-        return "\n".join(["#" * self.__width] * self.__height)
+        rectn = ""
+        for i in range(self.__height):
+            rectn += str(self.print_symbol) * self.__width
+            if i != self.__height - 1:
+                rectn += "\n"
+        return rectn
 
     def __repr__(self) -> str:
         """Return the string representation of the Rectangle."""
         return "Rectangle({}, {})".format(self.__width, self.__height)
+
+    def __del__(self):
+        """Delete the Rectangle."""
+        print("Bye rectangle...")
+        Rectangle.number_of_instances -= 1

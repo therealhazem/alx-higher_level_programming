@@ -1,20 +1,15 @@
 #!/usr/bin/python3
-'''Define a search and update function.'''
+"""Module for append_after method"""
 
 
 def append_after(filename="", search_string="", new_string=""):
-    '''Inserts a line text to a file.
-
-    Args:
-       filename (str): The name of the file.
-       search_string (str); The string to search for within the file.
-       new_string (str): The string to insert.
-    '''
-    text = ""
-    with open(filename) as myfile_r:
-        for line in myfile_r:
-            text += line
+    """Append a line of text to a file, after
+     each line containing a specific string"""
+    new_content = ""
+    with open(filename, "r") as f:
+        for line in f:
+            new_content += line
             if search_string in line:
-                text += new_string
-    with open(filename, "w") as myfile_w:
-        myfile_w.write(text)
+                new_content += new_string
+    with open(filename, "w") as f:
+        f.write(new_content)
